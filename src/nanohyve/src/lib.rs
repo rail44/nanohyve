@@ -653,17 +653,15 @@ mod tests {
     use std::io::ErrorKind;
     #[cfg(target_arch = "x86_64")]
     use std::path::Path;
-    
 
     #[cfg(target_arch = "x86_64")]
     use linux_loader::elf::Elf64_Ehdr;
-    
+
     #[cfg(target_arch = "x86_64")]
     use vm_memory::{
         bytes::{ByteValued, Bytes},
         Address, GuestAddress, GuestMemory,
     };
-    
 
     use super::*;
     // use utils::resource_download::s3_download;

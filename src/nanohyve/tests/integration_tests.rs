@@ -43,7 +43,7 @@ fn run_vmm(kernel_path: PathBuf) {
 //         "image_format": "elf"
 //     }
 //     "#;
-// 
+//
 //     let elf_halt = s3_download("kernel", Some(tags)).unwrap();
 //     run_vmm(elf_halt);
 // }
