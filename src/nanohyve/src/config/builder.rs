@@ -37,7 +37,7 @@ impl Builder {
     /// # Example
     ///
     /// ```
-    ///  # use vmm::VMMConfig;
+    ///  # use nanohyve::VMMConfig;
     ///
     /// let vmmconfig = VMMConfig::builder()
     ///     .memory_config(Some("size_mib=1024"))

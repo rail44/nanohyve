@@ -105,7 +105,6 @@ dependencies = [
  "kvm-ioctls",
  "libc",
  "linux-loader",
- "utils",
  "vm-device",
  "vm-memory",
  "vm-superio",

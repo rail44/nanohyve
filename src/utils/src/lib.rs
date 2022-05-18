@@ -1,8 +1,6 @@
 // Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0 OR BSD-3-Clause
 
-pub mod resource_download;
-
 /// A macro for printing errors only in debug mode.
 #[macro_export]
 #[cfg(debug_assertions)]

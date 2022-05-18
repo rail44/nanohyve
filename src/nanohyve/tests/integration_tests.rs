@@ -3,8 +3,7 @@
 use std::convert::TryFrom;
 use std::path::PathBuf;
 
-use utils::resource_download::s3_download;
-use vmm::{KernelConfig, MemoryConfig, VMMConfig, VcpuConfig, Vmm, DEFAULT_KERNEL_LOAD_ADDR};
+use nanohyve::{KernelConfig, MemoryConfig, VMMConfig, VcpuConfig, Vmm, DEFAULT_KERNEL_LOAD_ADDR};
 
 fn default_memory_config() -> MemoryConfig {
     MemoryConfig { size_mib: 1024 }
@@ -35,42 +34,42 @@ fn run_vmm(kernel_path: PathBuf) {
     vmm.run().unwrap();
 }
 
-#[test]
-#[cfg(target_arch = "x86_64")]
-fn test_dummy_vmm_elf() {
-    let tags = r#"
-    {
-        "halt_after_boot": true,
-        "image_format": "elf"
-    }
-    "#;
+// #[test]
+// #[cfg(target_arch = "x86_64")]
+// fn test_dummy_vmm_elf() {
+//     let tags = r#"
+//     {
+//         "halt_after_boot": true,
+//         "image_format": "elf"
+//     }
+//     "#;
+// 
+//     let elf_halt = s3_download("kernel", Some(tags)).unwrap();
+//     run_vmm(elf_halt);
+// }
 
-    let elf_halt = s3_download("kernel", Some(tags)).unwrap();
-    run_vmm(elf_halt);
-}
+// #[test]
+// #[cfg(target_arch = "x86_64")]
+// fn test_dummy_vmm_bzimage() {
+//     let tags = r#"
+//     {
+//         "halt_after_boot": true,
+//         "image_format": "bzimage"
+//     }
+//     "#;
+//     let bzimage_halt = s3_download("kernel", Some(tags)).unwrap();
+//     run_vmm(bzimage_halt);
+// }
 
-#[test]
-#[cfg(target_arch = "x86_64")]
-fn test_dummy_vmm_bzimage() {
-    let tags = r#"
-    {
-        "halt_after_boot": true,
-        "image_format": "bzimage"
-    }
-    "#;
-    let bzimage_halt = s3_download("kernel", Some(tags)).unwrap();
-    run_vmm(bzimage_halt);
-}
-
-#[test]
-#[cfg(target_arch = "aarch64")]
-fn test_dummy_vmm_pe() {
-    let tags = r#"
-    {
-        "halt_after_boot": true,
-        "image_format": "pe"
-    }
-    "#;
-    let pe_halt = s3_download("kernel", Some(tags)).unwrap();
-    run_vmm(pe_halt);
-}
+// #[test]
+// #[cfg(target_arch = "aarch64")]
+// fn test_dummy_vmm_pe() {
+//     let tags = r#"
+//     {
+//         "halt_after_boot": true,
+//         "image_format": "pe"
+//     }
+//     "#;
+//     let pe_halt = s3_download("kernel", Some(tags)).unwrap();
+//     run_vmm(pe_halt);
+// }
