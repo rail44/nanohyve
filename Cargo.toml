@@ -1,5 +1,5 @@
 [workspace]
-members = ["src/nanohyve"]
+members = ["nanohyve"]
 
 [patch.crates-io]
 linux-loader = { git = "https://github.com/rust-vmm/linux-loader.git", rev = "9a9f071" }
