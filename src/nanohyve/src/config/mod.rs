@@ -139,7 +139,6 @@ pub struct KernelConfig {
     /// Kernel command line.
     pub cmdline: Cmdline,
     /// Path to the kernel image.
-    pub path: PathBuf,
     /// Address where the kernel is loaded.
     pub load_addr: u64,
 }
@@ -161,7 +160,6 @@ impl Default for KernelConfig {
     fn default() -> Self {
         KernelConfig {
             cmdline: KernelConfig::default_cmdline(),
-            path: PathBuf::from(""), // FIXME: make it a const.
             load_addr: DEFAULT_KERNEL_LOAD_ADDR,
         }
     }
@@ -186,11 +184,6 @@ impl TryFrom<&str> for KernelConfig {
             .insert_str(cmdline_str)
             .map_err(|_| ConversionError::new_kernel("Kernel cmdline capacity error"))?;
 
-        let path = arg_parser
-            .value_of("path")
-            .map_err(ConversionError::new_kernel)?
-            .ok_or_else(|| ConversionError::new_kernel("Missing required argument: path"))?;
-
         let load_addr = arg_parser
             .value_of("kernel_load_addr")
             .map_err(ConversionError::new_kernel)?
@@ -199,11 +192,7 @@ impl TryFrom<&str> for KernelConfig {
         arg_parser
             .all_consumed()
             .map_err(ConversionError::new_kernel)?;
-        Ok(KernelConfig {
-            cmdline,
-            path,
-            load_addr,
-        })
+        Ok(KernelConfig { cmdline, load_addr })
     }
 }
 /// Network device configuration.

@@ -6,7 +6,6 @@
 use std::convert::TryFrom;
 #[cfg(target_arch = "aarch64")]
 use std::convert::TryInto;
-use std::fs::File;
 use std::io::{self, stdin, stdout};
 use std::ops::DerefMut;
 use std::path::PathBuf;
@@ -368,7 +367,7 @@ impl Vmm {
     // Load the kernel into guest memory.
     #[cfg(target_arch = "x86_64")]
     fn load_kernel(&mut self) -> Result<KernelLoaderResult> {
-        let mut kernel_image = File::open(&self.kernel_cfg.path).map_err(Error::IO)?;
+        let mut kernel_image = std::io::Cursor::new(include_bytes!("../kernel.img"));
         let zero_page_addr = GuestAddress(ZEROPG_START);
 
         // Load the kernel into guest memory.

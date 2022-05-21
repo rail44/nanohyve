@@ -51,17 +51,6 @@ impl Builder {
     /// ```
     pub fn build(&self) -> Result<VMMConfig, ConversionError> {
         // Check if there are any errors
-        match &self.inner {
-            Ok(vc) => {
-                // Empty kernel image path.
-                if vc.kernel_config.path.to_str().unwrap().is_empty() {
-                    return Err(ConversionError::ParseKernel(
-                        "Kernel Image Path is Empty.".to_string(),
-                    ));
-                }
-            }
-            Err(_) => {}
-        }
 
         self.inner.clone()
     }
