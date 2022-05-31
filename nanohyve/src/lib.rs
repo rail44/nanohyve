@@ -668,57 +668,6 @@ mod tests {
     const MEM_SIZE_MIB: u32 = 1024;
     const NUM_VCPUS: u8 = 1;
 
-    // #[cfg(target_arch = "x86_64")]
-    // fn default_bzimage_path() -> PathBuf {
-    //     let tags = r#"
-    //     {
-    //         "halt_after_boot": true,
-    //         "image_format": "bzimage"
-    //     }
-    //     "#;
-    //     s3_download("kernel", Some(tags)).unwrap()
-    // }
-
-    // fn default_elf_path() -> PathBuf {
-    //     let tags = r#"
-    //     {
-    //         "halt_after_boot": true,
-    //         "image_format": "elf"
-    //     }
-    //     "#;
-    //     s3_download("kernel", Some(tags)).unwrap()
-    // }
-
-    // #[cfg(target_arch = "aarch64")]
-    // fn default_pe_path() -> PathBuf {
-    //     let tags = r#"
-    //     {
-    //         "halt_after_boot": true,
-    //         "image_format": "pe"
-    //     }
-    //     "#;
-    //     s3_download("kernel", Some(tags)).unwrap()
-    // }
-
-    // fn default_vmm_config() -> VMMConfig {
-    //     VMMConfig {
-    //         kernel_config: KernelConfig {
-    //             #[cfg(target_arch = "x86_64")]
-    //             path: default_elf_path(),
-    //             #[cfg(target_arch = "aarch64")]
-    //             path: default_pe_path(),
-    //             load_addr: DEFAULT_KERNEL_LOAD_ADDR,
-    //             cmdline: KernelConfig::default_cmdline(),
-    //         },
-    //         memory_config: MemoryConfig {
-    //             size_mib: MEM_SIZE_MIB,
-    //         },
-    //         vcpu_config: VcpuConfig { num: NUM_VCPUS },
-    //         block_config: None,
-    //         net_config: None,
-    //     }
-    // }
-
     fn default_exit_handler() -> WrappedExitHandler {
         WrappedExitHandler(Arc::new(Mutex::new(VmmExitHandler {
             keep_running: AtomicBool::default(),
